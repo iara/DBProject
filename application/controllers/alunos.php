@@ -4,25 +4,29 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Alunos extends MY_Controller {
+    /*
+      function __construct() {
+
+      $this->load->model('alunos_model', 'alunos');
+      parent::__construct();
+      }
+     */
 
     public function index() {
-        /*
-          $data = array(
-          'nome' => 'iara',
-          'sobrenome' => 'miranda'
-          ); */
-
         $this->load->model('alunos_model', 'alunos');
-        $this->db->insert('aluno', array('cod_aluno' => '5','nome_aluno' => 'iara1', 'nota_aluno' => '12' ));
         $data['alunos'] = $this->alunos->getAll();
-        //pre($data['alunos'], true);
-        last_query(1);
         $this->load->view('admin/alunos/index', $data);
     }
 
-    public function cad() {
-        echo pre($_POST);
-        exit();
+    public function add() {
+        $this->db->insert('aluno', array('cod_aluno' => $_POST['cod_aluno'], 'nome_aluno' => $_POST['nome_aluno'], 'nota_aluno' => $_POST['nota_aluno']));
+
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            redirect($_SERVER["HTTP_REFERER"]);
+        } else {
+            redirect("$controller/index");
+        }
+
     }
 
 }

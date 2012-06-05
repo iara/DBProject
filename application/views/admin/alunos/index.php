@@ -6,10 +6,11 @@
     <body>
         <div>
             <?php
-            echo form_open('alunos/cad');
+            echo form_open('alunos/add');
             echo form_fieldset('my_form');
-            echo 'nome'.form_input('nome');//.br(1);
-            echo 'nota'.form_input('nota');//.br(1);
+            echo 'cod'.form_input('cod_aluno');//.br(1);
+            echo 'nome'.form_input('nome_aluno');//.br(1);
+            echo 'nota'.form_input('nota_aluno');//.br(1);
             echo form_submit('submit', 'enviar');
             echo form_fieldset_close();
             echo form_close();
