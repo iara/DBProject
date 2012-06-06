@@ -2,13 +2,28 @@
 
 class MY_Controller extends CI_Controller {
 
-    public function add() {
-        $this->db->insert('alunos', array('cod_aluno' => $_POST['cod_aluno'], 'nome_aluno' => $_POST['nome_aluno'], 'nota_aluno' => $_POST['nota_aluno']));
+    function __construct($config = array()) {
+        parent::__construct();
+        
+        if(isset($config['model']) && !empty($config['model'])){
+            $this->load->model($config['model'], 'default_model');
+        }     
+    }
 
+
+    public function add() {
+        $_inserted = $this->default_model->insert($_POST, TRUE);
+        if(isAjax()){
+            echo $_inserted ? 'sucess' : 'error';
+        }
+        else{
+        $this->session->set_flashdata('alert', $_inserted ? 'sucess' : 'error');
+            
         if (isset($_SERVER["HTTP_REFERER"])) {
-            redirect($_SERVER["HTTP_REFERER"]);
-        } else {
-            redirect("$controller/index");
+                redirect($_SERVER["HTTP_REFERER"]);
+            } else {
+                redirect("$controller/index");
+            }
         }
     }
 

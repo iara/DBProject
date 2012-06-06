@@ -51,15 +51,27 @@ if (!function_exists('pre')) {
 if (!function_exists('last_query')) {
 
     function last_query($value = '') {
-        if ($value){
+        if ($value) {
             echo $this->db->last_query();
             exit();
         }
-        else 
+        else
             echo $this->db->last_query();
     }
 
 }
+
+if (!function_exists('isAjax')) {
+
+    function isAjax() {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+}
+
 
 /* End of file general_helper.php */
 /* Location: ./system/helpers/general_helper.php */

@@ -6,12 +6,11 @@ if (!defined('BASEPATH'))
 class Alunos extends MY_Controller {
 
     function __construct() {
-        parent::__construct();
-        $this->load->model('alunos_model', 'alunos');
+        parent::__construct(array('model' => 'alunos_model'));
     }
 
     public function index() {
-        $data['alunos'] = $this->alunos->get_all();
+        $data['default_model'] = $this->default_model->get_all();
         $this->load->view('admin/alunos/index', $data);
     }
 
