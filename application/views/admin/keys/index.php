@@ -7,10 +7,10 @@
     <body>
         <div>
             <?php
-            echo form_open('alunos/add', array('id' => 'form_aluno'));
+            echo form_open($controller.'/add', array('id' => 'form_keys'));
             echo form_fieldset('my_form');
-            echo 'nome'.form_input('nome_aluno');
-            echo 'nota'.form_input('nota_aluno');
+            echo 'nome'.form_input('nome_keys');
+            echo 'nota'.form_input('nota_keys');
             echo form_button(array('type' => 'submit', 'content' => 'enviar'));
             echo form_fieldset_close();
             echo form_close();
@@ -22,7 +22,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 
-                var form = $('#form_aluno');
+                var form = $('#form_keys');
                 form.submit(function(){
                     $.post(form.attr('action'), form.serialize(), function(data){
                         alert(data);
