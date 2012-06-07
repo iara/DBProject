@@ -9,9 +9,9 @@ class Contacts extends MY_Controller {
         parent::__construct(array('model' => 'contacts_model'));
     }
 
-    public function index() {
+    public function form() {
         $data['default_model'] = $this->default_model->get_all();
-        $this->load->view('admin/contacts/index', $data);
+        $this->load->view('admin/contacts/form', $data);
     }
 
 }
