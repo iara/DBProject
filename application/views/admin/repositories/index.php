@@ -7,10 +7,12 @@
     <body>
         <div>
             <?php
-            echo form_open('alunos/add', array('id' => 'form_aluno'));
+            echo form_open($controller.'/add', array('id' => 'form_repositories'));
             echo form_fieldset('my_form');
-            echo 'nome'.form_input('nome_aluno');
-            echo 'nota'.form_input('nota_aluno');
+            
+            echo form_label('Nome','repo_name').form_input('repo_name');
+            echo form_label('Description','repo_description').form_input('repo_description').br(2);
+            echo form_label('is_public?','repo_is_public').form_checkbox('repo_is_public',1);
             echo form_button(array('type' => 'submit', 'content' => 'enviar'));
             echo form_fieldset_close();
             echo form_close();
@@ -22,7 +24,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 
-                var form = $('#form_aluno');
+                var form = $('#form_repositories');
                 form.submit(function(){
                     $.post(form.attr('action'), form.serialize(), function(data){
                         alert(data);
